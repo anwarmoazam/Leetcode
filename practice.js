@@ -297,6 +297,93 @@ function maximumSubArray(array) {
     }
 }
 
+// console.log(removeDuplicates([1,1,2]));
+
+// console.log(removeDuplicates([0,0,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,22,3,3,4]));
+
+/*
+
+You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0's.
+
+Increment the large integer by one and return the resulting array of digits.
+
+ 
+
+Example 1:
+
+Input: digits = [1,2,3]
+Output: [1,2,4]
+Explanation: The array represents the integer 123.
+Incrementing by one gives 123 + 1 = 124.
+Thus, the result should be [1,2,4].
+Example 2:
+
+Input: digits = [4,3,2,1]
+Output: [4,3,2,2]
+Explanation: The array represents the integer 4321.
+Incrementing by one gives 4321 + 1 = 4322.
+Thus, the result should be [4,3,2,2].
+Example 3:
+
+Input: digits = [0]
+Output: [1]
+Explanation: The array represents the integer 0.
+Incrementing by one gives 0 + 1 = 1.
+Thus, the result should be [1].
+Example 4:
+
+Input: digits = [9]
+Output: [1,0]
+Explanation: The array represents the integer 9.
+Incrementing by one gives 9 + 1 = 10.
+Thus, the result should be [1,0].
+
+*/
+
+function plusOne(array) {
+    let newArr = [];
+        if(array[array.length-1] == 9 && array.length>1) {
+            let length = array.length;
+            while(array[length-1]==9) {
+                    newArr.push(array[length-1]);
+                    array.splice(length-1,1)
+                    length--
+                    if(array.length == 0) {
+                        array.push(0);
+                    }
+            }
+            let lastDigit = array[array.length-1]
+            array.splice(array.length-1,1);
+            let str = String(newArr);
+            newArr.splice(0,newArr.length);
+            str = str.replaceAll(",","");
+            str = String(str);
+            strFirstDigit = str[0];
+            strRest = str.slice(1,str.length);
+            lastDigit = BigInt(lastDigit+str);
+            lastDigit++;
+            lastDigit = String(lastDigit);
+            for(let i=0; i<lastDigit.length; i++){
+                newArr.push(Number(lastDigit[i]));
+            }
+            return [...array,...newArr];
+        } else {
+            lastElement = array[array.length-1];
+            lastElement++;
+            array.splice(array.length-1,1);
+            if(lastElement>9) {
+                let str = String(lastElement);
+                for(let i=0; i<str.length; i++){
+                    array.push(Number(str[i]));
+                } 
+            } else {
+                array.push(lastElement)
+            }
+            return array;
+        }
+}
+
+console.log(plusOne([1,2,3]));
 
 // console.log(maximumSubArray([-2,1,-3,4,-1,2,1,-5,4]),6);
 console.log(maximumSubArray([5,4,-1,7,8]),23);
