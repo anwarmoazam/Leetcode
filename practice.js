@@ -424,6 +424,47 @@ function mergeNums(array1, m, array2, n) {
 // console.log(mergeNums([1],1,[],0));
 // console.log(mergeNums([0],0,[1],1));
 
+// Problem 9
+/*
+Given an integer numRows, return the first numRows of Pascal's triangle.
+
+In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
+
+
+ 
+
+Example 1:
+
+Input: numRows = 5
+Output: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
+Example 2:
+
+Input: numRows = 1
+Output: [[1]]
+*/
+
+function pascalsTriangle(rowIndex) {
+    let result = [];
+    for(let i=0; i<rowIndex; i++) {
+        let subArr = []
+        for(let j=0; j<=i; j++){
+            if(j==0 || j==i) {
+                subArr.push(1);
+            } else if(j>0 && j<i){
+                subArr.push(result[i-1][j-1]+result[i-1][j]);
+            } else{
+                subArr.push(1);
+            }
+        }
+        result.push(subArr);
+    }
+    return result;
+}
+
+// console.log(getRow(5));
+console.log(pascalsTriangle(5));
+
+
 
 // Problem 10
 /*
@@ -446,7 +487,7 @@ Input: rowIndex = 1
 Output: [1,1]
 */
 
-function getRow(rowIndex) {
+function pascalsTriangleII(rowIndex) {
     let result = [];
     for(let i=0; i<=rowIndex; i++) {
         let subArr = [];
@@ -464,9 +505,8 @@ function getRow(rowIndex) {
     return result[rowIndex];
 }
 
-// console.log(getRow(4));
-// console.log(getRow(3));
-// console.log(getRow(2));
-// console.log(getRow(1));
-// console.log(getRow(0));
-
+console.log(pascalsTriangleII(4));
+console.log(pascalsTriangleII(3));
+console.log(pascalsTriangleII(2));
+console.log(pascalsTriangleII(1));
+console.log(pascalsTriangleII(0));
