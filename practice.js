@@ -360,7 +360,7 @@ function plusOne(array) {
         }
 }
 
-console.log(plusOne([1,2,3]));
+// console.log(plusOne([1,2,3]));
 
 
 // Problem 7
@@ -393,4 +393,80 @@ Explanation: The arrays we are merging are [] and [1].
 The result of the merge is [1].
 Note that because m = 0, there are no elements in nums1. The 0 is only there to ensure the merge result can fit in nums1.
 */
+
+// function mergeNums(array1, m, array2, n) {
+//     let arrayOneResult = [];
+//     let arrayTwoResult = [];
+//     for(let i=0; i<m; i++) {
+//         arrayOneResult.push(array1[i]);
+//     }
+//     for(let i=0; i<n; i++) {
+//         arrayTwoResult.push(array2[i]);
+
+//     }
+//     return [...arrayOneResult,...arrayTwoResult].sort((a,b)=> a-b);
+// }
+
+// console.log(mergeNums([1,2,3,0,0,0],3,[2,5,6],3));
+// console.log(mergeNums([1],1,[],0));
+// console.log(mergeNums([0],0,[1],1));
+
+function mergeNums(array1, m, array2, n) {
+    array1.splice(m,array1.length);
+    for(let i=0; i<n; i++) {
+        array1.push(array2[i]);
+    }
+    array1.sort((a,b) => a-b);
+    return array1;
+}
+
+// console.log(mergeNums([1,2,3,0,0,0],3,[2,5,6],3));
+// console.log(mergeNums([1],1,[],0));
+// console.log(mergeNums([0],0,[1],1));
+
+
+// Problem 10
+/*
+
+Given an integer rowIndex, return the rowIndexth (0-indexed) row of the Pascal's triangle.
+
+In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
+
+Example 1:
+
+Input: rowIndex = 3
+Output: [1,3,3,1]
+Example 2:
+
+Input: rowIndex = 0
+Output: [1]
+Example 3:
+
+Input: rowIndex = 1
+Output: [1,1]
+*/
+
+function getRow(rowIndex) {
+    let result = [];
+    for(let i=0; i<=rowIndex; i++) {
+        let subArr = [];
+        for(let j=0; j<=i; j++) {
+            if(j==0 || j==i){
+                subArr.push(1)
+            } else if(j>0 && j<i) {
+                subArr.push(result[i-1][j-1]+result[i-1][j]);
+            } else {
+                subArr.push(1)
+            }
+        }
+        result.push(subArr);
+    }
+    return result[rowIndex];
+}
+
+// console.log(getRow(4));
+// console.log(getRow(3));
+// console.log(getRow(2));
+// console.log(getRow(1));
+// console.log(getRow(0));
 
