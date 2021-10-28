@@ -23,27 +23,27 @@ Input: nums = [3,3], target = 6
 Output: [0,1]
 */
 
-function twoSum(arr, target){
-    for(let i=0; i<arr.length; i++){
-        for(let j=i+1; j<arr.length; j++){
-            if(arr[i] + arr[j] === target){
-                return [i,j];
-            }
-        }
-    }
+function twoSum(arr, target) {
+	for (let i = 0; i < arr.length; i++) {
+		for (let j = i + 1; j < arr.length; j++) {
+			if (arr[i] + arr[j] === target) {
+				return [i, j];
+			}
+		}
+	}
 }
 
-function twoSum1(arr, target){
-    let obj = {};
-    for(let j=0; j<arr.length; j++){
-        obj[arr[j]] = j;
-    }
-    for(let i=0; i < arr.length; i++){
-        let diff = target - arr[i];
-        if(diff in obj && obj[diff]!=i) {
-            return [i, obj[diff]];
-        }
-    }
+function twoSum1(arr, target) {
+	let obj = {};
+	for (let j = 0; j < arr.length; j++) {
+		obj[arr[j]] = j;
+	}
+	for (let i = 0; i < arr.length; i++) {
+		let diff = target - arr[i];
+		if (diff in obj && obj[diff] != i) {
+			return [i, obj[diff]];
+		}
+	}
 }
 
 // console.log(twoSum1([2,7,11,15],26));
@@ -93,17 +93,16 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 */
 
 function removeDuplicate(array) {
-    for(let i=0; i<array.length; i++) {
-        if(array[i] === array[i+1]) {
-            array.splice(i,1);
-            i--;
-        }
-    }
-    return array.length;
+	for (let i = 0; i < array.length; i++) {
+		if (array[i] === array[i + 1]) {
+			array.splice(i, 1);
+			i--;
+		}
+	}
+	return array.length;
 }
 
 // console.log(removeDuplicate([0,0,0,0]));
-
 
 // function removeDuplicate(array) {
 //     let result = [];
@@ -126,11 +125,11 @@ function removeDuplicate(array) {
 // }
 
 function removeDuplicate(array) {
-    let uniqueArrayValues = {};
-    for(let i=0; i<array.length; i++) {
-        uniqueArrayValues[array[i]] = "";
-    }
-    return Object.keys(uniqueArrayValues).length;
+	let uniqueArrayValues = {};
+	for (let i = 0; i < array.length; i++) {
+		uniqueArrayValues[array[i]] = '';
+	}
+	return Object.keys(uniqueArrayValues).length;
 }
 
 // console.log(removeDuplicate([0,0,1,1,1,2,2,2,2,5,5,5]));
@@ -145,13 +144,11 @@ function removeDuplicate(array) {
 //         }
 //         // else {
 //         //     i=j;
-//         // } 
+//         // }
 //     }
 //     return nums;
 // };
 // console.log(removeDuplicate([0,0,0,0,1,1,1,2]));
-
-
 
 // Problem 3
 /*
@@ -171,14 +168,14 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 
 */
 
-function removeElement(array,value){
-    for(let i=0; i<array.length; i++) {
-        if(array[i] == value){
-            array.splice(i,1);
-            i--;
-        }
-    }
-    return array.length;
+function removeElement(array, value) {
+	for (let i = 0; i < array.length; i++) {
+		if (array[i] == value) {
+			array.splice(i, 1);
+			i--;
+		}
+	}
+	return array.length;
 }
 
 // console.log(removeElement([0,0,1,1,2],1));
@@ -211,13 +208,13 @@ Input: nums = [1], target = 0
 Output: 0
 */
 
-function insertPosition (array,target) {
-    for(let i=0; i<array.length; i++){
-        if(array[i] == target || array[i]>target){
-            return i;
-        }
-    }
-    return array.length;
+function insertPosition(array, target) {
+	for (let i = 0; i < array.length; i++) {
+		if (array[i] == target || array[i] > target) {
+			return i;
+		}
+	}
+	return array.length;
 }
 
 // console.log(insertPosition([0,1,44],46));
@@ -246,37 +243,35 @@ Output: 23
 */
 
 function maximumSubArray(array) {
-    // let elements = 0;
-    // let subArray = [];
-    // let result = array.reduce(function (acc, curr) {
-    //     return acc + curr;
-    // })
-    // return result;
-    if(array.length == 1){
-        return array[0];
-    }
-    if(array.length <= 10**5){
-        let previousSum = -Infinity;
-        for(let i=0; i<array.length; i++){
-            let totalSum = 0;
-            for(let j=i; j<array.length; j++){
-                if(array[j]>=-(10**4) && array[j]<=10**4){
-                    totalSum += array[j]
-                    if(previousSum < totalSum){
-                        previousSum = totalSum;
-                    }
-                }
-                
-            }
-        }
-        return previousSum;
-    }
+	// let elements = 0;
+	// let subArray = [];
+	// let result = array.reduce(function (acc, curr) {
+	//     return acc + curr;
+	// })
+	// return result;
+	if (array.length == 1) {
+		return array[0];
+	}
+	if (array.length <= 10 ** 5) {
+		let previousSum = -Infinity;
+		for (let i = 0; i < array.length; i++) {
+			let totalSum = 0;
+			for (let j = i; j < array.length; j++) {
+				if (array[j] >= -(10 ** 4) && array[j] <= 10 ** 4) {
+					totalSum += array[j];
+					if (previousSum < totalSum) {
+						previousSum = totalSum;
+					}
+				}
+			}
+		}
+		return previousSum;
+	}
 }
 
 // console.log(maximumSubArray([-2,1,-3,4,-1,2,1,-5,4]),6);
 // console.log(maximumSubArray([5,4,-1,7,8]),23);
 // console.log(maximumSubArray([1]),1);
-
 
 // Problem 6
 /*
@@ -318,50 +313,49 @@ Thus, the result should be [1,0].
 */
 
 function plusOne(array) {
-    let newArr = [];
-        if(array[array.length-1] == 9 && array.length>1) {
-            let length = array.length;
-            while(array[length-1]==9) {
-                    newArr.push(array[length-1]);
-                    array.splice(length-1,1)
-                    length--
-                    if(array.length == 0) {
-                        array.push(0);
-                    }
-            }
-            let lastDigit = array[array.length-1]
-            array.splice(array.length-1,1);
-            let str = String(newArr);
-            newArr.splice(0,newArr.length);
-            str = str.replaceAll(",","");
-            str = String(str);
-            strFirstDigit = str[0];
-            strRest = str.slice(1,str.length);
-            lastDigit = BigInt(lastDigit+str);
-            lastDigit++;
-            lastDigit = String(lastDigit);
-            for(let i=0; i<lastDigit.length; i++){
-                newArr.push(Number(lastDigit[i]));
-            }
-            return [...array,...newArr];
-        } else {
-            lastElement = array[array.length-1];
-            lastElement++;
-            array.splice(array.length-1,1);
-            if(lastElement>9) {
-                let str = String(lastElement);
-                for(let i=0; i<str.length; i++){
-                    array.push(Number(str[i]));
-                } 
-            } else {
-                array.push(lastElement)
-            }
-            return array;
-        }
+	let newArr = [];
+	if (array[array.length - 1] == 9 && array.length > 1) {
+		let length = array.length;
+		while (array[length - 1] == 9) {
+			newArr.push(array[length - 1]);
+			array.splice(length - 1, 1);
+			length--;
+			if (array.length == 0) {
+				array.push(0);
+			}
+		}
+		let lastDigit = array[array.length - 1];
+		array.splice(array.length - 1, 1);
+		let str = String(newArr);
+		newArr.splice(0, newArr.length);
+		str = str.replaceAll(',', '');
+		str = String(str);
+		strFirstDigit = str[0];
+		strRest = str.slice(1, str.length);
+		lastDigit = BigInt(lastDigit + str);
+		lastDigit++;
+		lastDigit = String(lastDigit);
+		for (let i = 0; i < lastDigit.length; i++) {
+			newArr.push(Number(lastDigit[i]));
+		}
+		return [...array, ...newArr];
+	} else {
+		lastElement = array[array.length - 1];
+		lastElement++;
+		array.splice(array.length - 1, 1);
+		if (lastElement > 9) {
+			let str = String(lastElement);
+			for (let i = 0; i < str.length; i++) {
+				array.push(Number(str[i]));
+			}
+		} else {
+			array.push(lastElement);
+		}
+		return array;
+	}
 }
 
 // console.log(plusOne([1,2,3]));
-
 
 // Problem 7
 /*
@@ -411,18 +405,56 @@ Note that because m = 0, there are no elements in nums1. The 0 is only there to 
 // console.log(mergeNums([1],1,[],0));
 // console.log(mergeNums([0],0,[1],1));
 
+// function mergeNums(array1, m, array2, n) {
+//     array1.splice(m,array1.length);
+//     for(let i=0; i<n; i++) {
+//         array1.push(array2[i]);
+//     }
+//     array1.sort((a,b) => a-b);
+//     return array1;
+// }
+
 function mergeNums(array1, m, array2, n) {
-    array1.splice(m,array1.length);
-    for(let i=0; i<n; i++) {
-        array1.push(array2[i]);
-    }
-    array1.sort((a,b) => a-b);
-    return array1;
+	let length = m + n;
+	array1.splice(m, array1.length);
+	array2.splice(n, array2.length);
+	let result = [];
+	for (let i = 0; i < length; i++) {
+		if (array1.length != 0 && array2.length != 0) {
+			if (array1[0] <= array2[0]) {
+				result.push(array1[0]);
+				array1.splice(0, 1);
+			} else {
+				result.push(array2[0]);
+				array2.splice(0, 1);
+			}
+		} else if (array1.length != 0) {
+			for (let i = 0; i < array1.length; i++) {
+				result.push(array1[i]);
+			}
+			for (let i = 0; i < result.length; i++) {
+				array1[i] = result[i];
+			}
+			return array1;
+		} else if (array2.length != 0) {
+			for (let i = 0; i < array2.length; i++) {
+				result.push(array2[i]);
+			}
+			for (let i = 0; i < result.length; i++) {
+				array1[i] = result[i];
+			}
+			return array1;
+		}
+	}
+	for (let i = 0; i < result.length; i++) {
+		array1[i] = result[i];
+	}
+	return array1;
 }
 
-// console.log(mergeNums([1,2,3,0,0,0],3,[2,5,6],3));
-// console.log(mergeNums([1],1,[],0));
-// console.log(mergeNums([0],0,[1],1));
+// console.log(mergeNums([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3));
+// console.log(mergeNums([1], 1, [], 0));
+// console.log(mergeNums([0], 0, [1], 1));
 
 // Problem 9
 /*
@@ -444,27 +476,25 @@ Output: [[1]]
 */
 
 function pascalsTriangle(rowIndex) {
-    let result = [];
-    for(let i=0; i<rowIndex; i++) {
-        let subArr = []
-        for(let j=0; j<=i; j++){
-            if(j==0 || j==i) {
-                subArr.push(1);
-            } else if(j>0 && j<i){
-                subArr.push(result[i-1][j-1]+result[i-1][j]);
-            } else{
-                subArr.push(1);
-            }
-        }
-        result.push(subArr);
-    }
-    return result;
+	let result = [];
+	for (let i = 0; i < rowIndex; i++) {
+		let subArr = [];
+		for (let j = 0; j <= i; j++) {
+			if (j == 0 || j == i) {
+				subArr.push(1);
+			} else if (j > 0 && j < i) {
+				subArr.push(result[i - 1][j - 1] + result[i - 1][j]);
+			} else {
+				subArr.push(1);
+			}
+		}
+		result.push(subArr);
+	}
+	return result;
 }
 
 // console.log(getRow(5));
-console.log(pascalsTriangle(5));
-
-
+// console.log(pascalsTriangle(5));
 
 // Problem 10
 /*
@@ -488,25 +518,25 @@ Output: [1,1]
 */
 
 function pascalsTriangleII(rowIndex) {
-    let result = [];
-    for(let i=0; i<=rowIndex; i++) {
-        let subArr = [];
-        for(let j=0; j<=i; j++) {
-            if(j==0 || j==i){
-                subArr.push(1)
-            } else if(j>0 && j<i) {
-                subArr.push(result[i-1][j-1]+result[i-1][j]);
-            } else {
-                subArr.push(1)
-            }
-        }
-        result.push(subArr);
-    }
-    return result[rowIndex];
+	let result = [];
+	for (let i = 0; i <= rowIndex; i++) {
+		let subArr = [];
+		for (let j = 0; j <= i; j++) {
+			if (j == 0 || j == i) {
+				subArr.push(1);
+			} else if (j > 0 && j < i) {
+				subArr.push(result[i - 1][j - 1] + result[i - 1][j]);
+			} else {
+				subArr.push(1);
+			}
+		}
+		result.push(subArr);
+	}
+	return result[rowIndex];
 }
 
-console.log(pascalsTriangleII(4));
-console.log(pascalsTriangleII(3));
-console.log(pascalsTriangleII(2));
-console.log(pascalsTriangleII(1));
-console.log(pascalsTriangleII(0));
+// console.log(pascalsTriangleII(4));
+// console.log(pascalsTriangleII(3));
+// console.log(pascalsTriangleII(2));
+// console.log(pascalsTriangleII(1));
+// console.log(pascalsTriangleII(0));
