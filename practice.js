@@ -1,3 +1,15 @@
+function findMax(array){
+	let max = array[0];
+	for(let i=1; i<array.length; i++){
+		if(array[i]>array[i-1] && array[i]>max){
+			max = array[i];
+		} 
+	}
+	return max;
+}
+
+// console.log(findMax([3,1]));
+
 // Problem 1
 /*
 Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
@@ -540,3 +552,168 @@ function pascalsTriangleII(rowIndex) {
 // console.log(pascalsTriangleII(2));
 // console.log(pascalsTriangleII(1));
 // console.log(pascalsTriangleII(0));
+
+
+// Problem 11
+/*
+
+You are given an array prices where prices[i] is the price of a given stock on the ith day.
+
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+ 
+
+Example 1:
+
+Input: prices = [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+Example 2:
+
+Input: prices = [7,6,4,3,1]
+Output: 0
+Explanation: In this case, no transactions are done and the max profit = 0.
+
+*/
+
+function maxProfit(prices) {
+	let profit=[];
+	for(let i=0; i<prices.length; i++){
+		for(let j=i+1; j<prices.length; j++){
+			if(prices[j]>prices[i]){
+				profit.push(prices[j]-prices[i]);
+			}
+		}	
+	}
+	if(profit.length>1){
+		let maxProfit = profit[0];
+		for(let i=1; i<profit.length; i++){
+			if(profit[i]>profit[i-1] && profit[i]>maxProfit){
+				maxProfit = profit[i];
+			} 
+		}
+		return maxProfit;
+	} else if(profit.length==1){
+		return profit[0];
+	}else {
+		return 0;
+	}
+}
+
+// console.log(maxProfit([2,3,5])); //
+// console.log(maxProfit([1,2])); //[1]
+// console.log(maxProfit([2,1,4])); //[2, 3]
+// console.log(maxProfit([1,5,7,2,10])); //[4, 6, 1, 9, 2, 5, 3, 8]
+// console.log(maxProfit([7,1,5,3,6,4])); //[4, 2, 5, 3, 1, 3, 1]
+// console.log(maxProfit([7,6,4,3,1])); //[]
+
+function maxProfit(prices) {
+	let maxProfit=prices[1]-prices[0];
+	for(let i=0; i<prices.length; i++){
+		for(let j=i+1; j<prices.length; j++){
+			if(prices[j]>prices[i] && prices[j]-prices[i]>maxProfit){
+				maxProfit=prices[j]-prices[i];
+			}
+		}	
+	}
+	if(maxProfit>0){
+		return maxProfit;
+	} else {
+		return 0
+	}
+}
+
+// console.log(maxProfit([2,3,5])); //
+// console.log(maxProfit([1,2])); //[1]
+// console.log(maxProfit([2,1,4])); //[2, 3]
+// console.log(maxProfit([1,5,7,2,10])); //[4, 6, 1, 9, 2, 5, 3, 8]
+// console.log(maxProfit([7,1,5,3,6,4])); //[4, 2, 5, 3, 1, 3, 1]
+// console.log(maxProfit([7,6,4,3,1])); //[]
+
+
+
+
+
+
+// Problem 12
+/*
+Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+
+You must implement a solution with a linear runtime complexity and use only constant extra space.
+
+ 
+
+Example 1:
+
+Input: nums = [2,2,1]
+Output: 1
+Example 2:
+
+Input: nums = [4,1,2,1,2]
+Output: 4
+Example 3:
+
+Input: nums = [1]
+Output: 1
+*/
+
+function singleNumber(numbers){
+	let obj = {};
+	for(let key in numbers){
+		if(!obj[numbers[key]]){
+			obj[numbers[key]] = 1;
+		} else{
+			obj[numbers[key]]++ 
+		}
+	}
+	for(let key in obj){
+		if(obj[key] == 1){
+			return Number(key);
+		}
+	}
+}
+
+// console.log(singleNumber([2,2,1]));
+// console.log(singleNumber([4,1,2,1,2]));
+// console.log(singleNumber([1]));
+
+function singleNumber1(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        let isDuplicate = false;
+        for (let j = 0; j < arr.length; j++) {
+            if (arr[i] == arr[j] && i != j) {
+                isDuplicate = true;
+                break;
+            }
+        }
+        if (isDuplicate == false) {false
+            return arr[i];
+        }
+    }
+}
+// console.log(singleNumber1([1, 2, 2]));
+// console.log(singleNumber1([4, 1, 2, 1, 2]));
+// console.log(singleNumber1([4, 4, 1, 2, 1, 2, 3]));
+// console.log(singleNumber1([1]));
+
+function singleNumber2(numbers) {
+	let isDuplicate=false;
+	let count=0;
+	let current = numbers[0];
+	for(let i=0; i<numbers.length; i++){
+		// let current=numbers[i];
+		if(numbers[i]==current){
+			count++;
+			isDuplicate=true;
+		}
+		console.log(count);
+	}
+}
+
+console.log(singleNumber2([1, 2, 1]));
+// console.log(singleNumber2([4, 1, 2, 1, 2]));
+// console.log(singleNumber2([4, 4, 1, 2, 1, 2, 3]));
+// console.log(singleNumber2([1]));
