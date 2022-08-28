@@ -676,9 +676,9 @@ function singleNumber(numbers){
 	}
 }
 
-// console.log(singleNumber([2,2,1]));
-// console.log(singleNumber([4,1,2,1,2]));
-// console.log(singleNumber([1]));
+console.log(singleNumber([2,2,1]));
+console.log(singleNumber([4,1,2,1,2]));
+console.log(singleNumber([1]));
 
 function singleNumber1(arr) {
     for (let i = 0; i < arr.length; i++) {
@@ -713,7 +713,7 @@ function singleNumber2(numbers) {
 	}
 }
 
-console.log(singleNumber2([1, 2, 1]));
+// console.log(singleNumber2([1, 2, 1]));
 // console.log(singleNumber2([4, 1, 2, 1, 2]));
 // console.log(singleNumber2([4, 4, 1, 2, 1, 2, 3]));
 // console.log(singleNumber2([1]));
